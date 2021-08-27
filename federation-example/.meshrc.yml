@@ -8,7 +8,7 @@ sources:
           types:
             - name: Query
               config:
-                extend: false
+                extend: true
             - name: User
               config:
                 keyFields:

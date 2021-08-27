@@ -50,6 +50,8 @@ The example crashes with:
 🕸️ - Server: Could not add key directives or extend types: Query
 ```
 
+Visiting the elixir service [http://localhost:9871/graphql](http://localhost:9871/graphql), the graph can be queried.
+
 If you comment out all of the federation transforms `types`, the server will start, elixir will be queried for `user` queries, but `user` fields in other schemas are `null`:
 
 ```yaml

@@ -19,9 +19,11 @@ defmodule AbsFedWeb.Resolvers.Accounts do
   end
 
   def get_user(_parent, %{id: id}, _resolution) do
-    Enum.find(@userdb, fn(user) ->
+    user = Enum.find(@userdb, fn(user) ->
       user.id == id
     end)
+
+    {:ok, user}
   end
 end
 
@@ -41,7 +43,7 @@ defmodule AbsFedWeb.Schema do
 
   alias AbsFedWeb.Resolvers
 
-  query do
+  query name: "Query" do
     @desc "Get all users"
     field :users, list_of(:user) do
       resolve(&Resolvers.Accounts.list_users/3)

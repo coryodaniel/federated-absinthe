@@ -7,7 +7,6 @@
     "start": "concurrently \"npm:start-services npm:start-gateway-delayed\"",
     "start-gateway": "mesh dev",
     "start-gateway-delayed": "delay 1 && npm run start-gateway",
-    "_start-service-accounts": "nodemon services/accounts-js/index.js",
     "start-service-accounts": "cd services/accounts-ex && mix phx.server",
     "start-service-reviews": "nodemon services/reviews/index.js",
     "start-service-products": "nodemon services/products/index.js",

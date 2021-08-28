@@ -22,3 +22,38 @@ yarn start
 ```
 
 The example query should run successfully.
+
+## How it works
+
+The GraphQL Mesh config file `.meshrc.yml` contains a list of APIs that can be included in the mesh. GraphQL Mesh supports 12 API sources including GraphQL (with or without federation support), gRPC, OpenAPI, and others.
+
+When adding a graphql source that does **not** support federation, a transform can be used.
+
+Here is an example of extending the root query and allowing other fields to access the accounts' user fields.
+
+```yaml
+  - name: accounts
+    handler:
+      graphql:
+        endpoint: http://localhost:9871/graphql
+    transforms:
+      - federation:
+          types:
+            - name: Query # Note: Absinthe defaults the root query type name to "RootQueryType"
+              config:
+                extend: true
+            - name: User
+              config:
+                keyFields:
+                  - id
+                resolveReference:
+                  queryFieldName: user
+```
+
+The query name on line 8 of the YAML above needs to match the name of the root query in Absinthe.
+
+```ex
+query name: "Query" do
+  # ...
+end
+```

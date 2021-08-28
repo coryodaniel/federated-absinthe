@@ -1,0 +1,35 @@
+sources:
+  - name: accounts
+    handler:
+      graphql:
+        endpoint: http://localhost:9871/graphql
+    transforms:
+      - federation:
+          types:
+            - name: Query # Note: Absinthe defaults to RootQueryType
+              config:
+                extend: true
+            - name: User
+              config:
+                keyFields:
+                  - id
+                resolveReference:
+                  queryFieldName: user
+  - name: reviews
+    handler:
+      graphql:
+        endpoint: http://localhost:9872/graphql
+  - name: products
+    handler:
+      graphql:
+        endpoint: http://localhost:9873/graphql
+  - name: inventory
+    handler:
+      graphql:
+        endpoint: http://localhost:9874/graphql
+
+documents:
+  - example-query.graphql
+
+serve:
+  playground: true

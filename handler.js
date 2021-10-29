@@ -8,7 +8,6 @@ module.exports = async ({ getBuiltMesh, documents, logger }) => {
     apollo: {key: process.env.APOLLO_KEY, graphRef: process.env.APOLLO_GRAPH_REF},
     context: ({ req }) => req,
     introspection: true,
-    playground: true,
     plugins: [
       ApolloServerPluginUsageReporting({
         generateClientInfo: ({request}) => {
@@ -26,7 +25,7 @@ module.exports = async ({ getBuiltMesh, documents, logger }) => {
           }
         },
       }),
-    ],    
+    ],
     playground: {
       tabs: documents.map(({ location, rawSDL }) => ({
         name: location,

@@ -33,3 +33,5 @@ documents:
 
 serve:
   playground: true
+  customServerHandler: ./handler.js
+

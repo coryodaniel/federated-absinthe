@@ -17,7 +17,10 @@ asdf install
 [GraphQL Mesh](https://github.com/Urigo/graphql-mesh) includes a [federation example](https://github.com/Urigo/graphql-mesh/tree/master/examples/federation-example) federating 4 nodejs graphs. This example replaces the `accounts` nodejs app with Absinthe.
 
 ```shell
+pushd services/accounts && mix do deps.get, compile && popd
 yarn install
+export APOLLO_KEY=your-key
+export APOLLO_GRAPH_REF=your-graph-ref
 yarn start
 ```
 
